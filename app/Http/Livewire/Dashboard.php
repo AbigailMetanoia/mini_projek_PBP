@@ -37,7 +37,15 @@ class Dashboard extends Component
         // ->orderBy('status','ASC')
         // ->paginate(10);
 
-        $viewBooks = ViewBooks::all();
+        $viewBooks = ViewBooks::where(function($quary){
+            $quary->where('isbn','like','%'.$this->search.'%')
+            ->orWhere('judul','like','%'.$this->search.'%')
+            ->orWhere('idkategori','like','%'.$this->search.'%')
+            ->orWhere('pengarang','like','%'.$this->search.'%')
+            ->orWhere('penerbit','like','%'.$this->search.'%')
+            ->orWhere('kota_terbit','like','%'.$this->search.'%')
+            ->orWhere('editor','like','%'.$this->search.'%');
+        })->get();
         return view('livewire.dashboard', ['view_books' => $viewBooks]);
     }
 
