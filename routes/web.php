@@ -1,19 +1,23 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\Auth\ForgotPassword;
-use App\Http\Livewire\Auth\ResetPassword;
-use App\Http\Livewire\Auth\SignUp;
-use App\Http\Livewire\Auth\Login;
-use App\Http\Livewire\Dashboard;
+use Illuminate\Http\Request;
 use App\Http\Livewire\Riwayat;
+use App\Http\Livewire\ViewBook;
+use App\Http\Livewire\Dashboard;
+use App\Http\Livewire\ViewBooks;
+use App\Http\Livewire\Auth\Login;
+// use App\Http\Livewire\Dashboard;
+use App\Http\Livewire\Auth\SignUp;
 use App\Http\Livewire\StaticSignIn;
 use App\Http\Livewire\StaticSignUp;
 
 
-use App\Http\Livewire\LaravelExamples\Keranjang;
+use Illuminate\Support\Facades\Route;
 
-use Illuminate\Http\Request;
+use App\Http\Livewire\Auth\ResetPassword;
+use App\Http\Livewire\Auth\ForgotPassword;
+use App\Http\Controllers\ViewBooksController;
+use App\Http\Livewire\LaravelExamples\Keranjang;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +48,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/static-sign-up', StaticSignUp::class)->name('static-sign-up');
     Route::get('/laravel-keranjang', Keranjang::class)->name('keranjang');
     Route::get('/search', 'ViewBooksController@search')->name('search');
-    Route::get('/details-book/{id}', 'ViewBooksController@detailsBook')->name('detailsBook');
+    // Route::get('/details-book/{id}', 'ViewBooksController@detailsBook')->name('detailsBook');
+    Route::get('/details-book/{id}', ViewBook::class)->name('detailsBook');
 
 });
 
