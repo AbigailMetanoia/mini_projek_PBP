@@ -12,7 +12,7 @@
                                         <h5 class="mb-0" style="text-align: center;">Rekomendasi Buku Untukmu !</h5>
                                     </div>
                                     <div class="search-bar">
-                                        <input  type="text" placeholder="Search..." id="search-input">
+                                        <input  type="text" wire:model='search' placeholder="Search..." id="search-input">
                                         <button class= "btn btn-primary" id="search-button">Search</button>
                                     </div>
                                 </div>
