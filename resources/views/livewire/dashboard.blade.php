@@ -51,6 +51,9 @@
                                         ?>
                                         @foreach($view_books as $book)
                                         <tr>
+                                            {{-- <td class="ps-4">
+                                                <p class="text-xs font-weight-bold mb-0">{{ ($users ->currentpage()-1) * $users ->perpage() + $loop->index + 1 }}</p>
+                                            </td> --}}
                                             <td style="text-align: center;">{{ $book->id }}</td>
                                             <td style="text-align: center;">{{ $book->isbn }}</td>
                                             <td style="text-align: center;">{{ $book->judul }}</td>
@@ -63,6 +66,10 @@
                                         @endforeach
 
                                     </table>
+                                    {{-- <div class="mt-3 mx-3 d-flex align-items-center justify-content-center text-danger">
+                                        {{ $users->links() }}
+
+                                    </div> --}}
                                 </div>
                             </div>
         </div>

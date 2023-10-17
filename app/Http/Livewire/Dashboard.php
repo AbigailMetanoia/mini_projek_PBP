@@ -8,6 +8,8 @@ use Livewire\Component;
 class Dashboard extends Component
 {
     // use WithPagination;
+    public $search = '';
+
 
     public function render()
     {
