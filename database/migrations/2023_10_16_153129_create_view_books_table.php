@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('view_books', function (Blueprint $table) {
             $table->id();
             $table->string("isbn", 20)->unique();
+            $table->string("idkategori", 20)->unique();
             $table->string("author", 50);
             $table->string("title", 100);
             $table->float("price", 10);
