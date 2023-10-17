@@ -7,6 +7,8 @@ use Livewire\Component;
 
 class Dashboard extends Component
 {
+    // use WithPagination;
+
     public $search = '';
 
     public function render()
@@ -17,9 +19,9 @@ class Dashboard extends Component
             ->orwhere('author','like','%'.$this->search.'%')
             ->orwhere('title','like','%'.$this->search.'%')
             ->orwhere('price','like','%'.$this->search.'%');
-        })
-        ->orderBy('id','ASC');
-
+        });
+        // ->orderBy('id','ASC');
+        // ->paginate(10);
 
         return view('livewire.dashboard', ['view_books' => $viewBooks]);
     }
