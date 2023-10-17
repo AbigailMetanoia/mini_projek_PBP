@@ -15,6 +15,10 @@
                                         <input  type="text" wire:model='search' placeholder="Search..." id="search-input">
                                         <button class= "btn btn-primary" id="search-button">Search</button>
                                     </div>
+                                    {{-- <div class="input-group">
+                                        <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                                        <input type="search" wire:model='search' class="form-control" placeholder="Cari mahasiswa...">
+                                    </div> --}}
                                 </div>
                             </div>
                             <br>
