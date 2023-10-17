@@ -9,20 +9,9 @@ class Dashboard extends Component
 {
     // use WithPagination;
 
-    public $search = '';
-
     public function render()
     {
-        $viewBooks = ViewBooks::all()
-        ->where(function($query){
-            $query->where('isbn','like','%'.$this->search.'%')
-            ->orwhere('author','like','%'.$this->search.'%')
-            ->orwhere('title','like','%'.$this->search.'%')
-            ->orwhere('price','like','%'.$this->search.'%');
-        });
-        // ->orderBy('id','ASC');
-        // ->paginate(10);
-
+        $viewBooks = ViewBooks::all();
         return view('livewire.dashboard', ['view_books' => $viewBooks]);
     }
 

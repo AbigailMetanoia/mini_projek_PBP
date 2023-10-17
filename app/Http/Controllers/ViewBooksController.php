@@ -18,6 +18,13 @@ class ViewBooksController extends Controller
         return view('livewire.dashboard', ['view_books' => $viewBooks]);
     }
 
+    public function detailsBook($id)
+    {
+        $book = ViewBooks::find($id);
+
+        return view('livewire.detail_books', ['view_books' => $book]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */

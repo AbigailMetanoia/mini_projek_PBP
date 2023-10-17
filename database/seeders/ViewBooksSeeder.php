@@ -6,6 +6,7 @@ use App\Models\ViewBooks;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+
 class ViewBooksSeeder extends Seeder
 {
     /**
@@ -13,76 +14,43 @@ class ViewBooksSeeder extends Seeder
      */
     public function run()
    {
-       $view_books = [
+
+        $view_books = [
         [
             'isbn' => 'A1',
-            'author' => 'Adam Malik',
-            'title' => 'Hitung Jari',
-            'price' => '49.567',
-
+            'judul' => 'Hitung Jari',
+            'idkategori' => 'A',
+            'pengarang'=>'Adam Malik',
+            'penerbit' => 'Kompas',
+            'kota_terbit' => 'Semarang',
+            'editor' => 'Henry S.',
+            'file_gambar' => 'book1.png',
+            'stok' => '10',
+            'stok_tersedia' => '5',
         ],
         [
             'isbn' => 'A2',
-            'author' => 'lucia Dewi',
-            'title' => 'Beban dan Tawa',
-            'price' => '59.767',
-
+            'judul' => 'Beban Hidup',
+            'idkategori' => 'B',
+            'pengarang'=>'Satria Matahir',
+            'penerbit' => 'Kompas',
+            'kota_terbit' => 'Semarang',
+            'editor' => 'Dhimas S.',
+            'file_gambar' => 'book1.png',
+            'stok' => '10',
+            'stok_tersedia' => '3',
         ],
         [
             'isbn' => 'A3',
-            'author' => 'Tehhila Alaska',
-            'title' => 'Tangis',
-            'price' => '67.167',
-
-        ],
-        [
-            'isbn' => 'A4',
-            'author' => 'Sisila Puspa Dewi',
-            'title' => 'Bersinggah Sejenak',
-            'price' => '19.347',
-
-        ],
-        [
-            'isbn' => 'A5',
-            'author' => 'Lisa Putri Dewi',
-            'title' => 'Kuncup Mawar Merah',
-            'price' => '159.367',
-
-        ],
-        [
-            'isbn' => 'A6',
-            'author' => 'Tompi Simorangkir',
-            'title' => 'Kehangatan Teh Kopi',
-            'price' => '39.467',
-
-        ],
-        [
-            'isbn' => 'A7',
-            'author' => 'Gibran Sadam Permana',
-            'title' => 'Keluarga Cemara',
-            'price' => '79.367',
-
-        ],
-        [
-            'isbn' => 'A8',
-            'author' => 'Herry Setiawan',
-            'title' => 'Belajar Positif',
-            'price' => '49.767',
-
-        ],
-        [
-            'isbn' => 'A9',
-            'author' => 'Juan Evan',
-            'title' => 'Atomic Habits',
-            'price' => '189.267',
-
-        ],
-        [
-            'isbn' => 'A10',
-            'author' => 'Hotman Brazil',
-            'title' => 'Ice Cold',
-            'price' => '189.467',
-
+            'judul' => 'Tangan Ada Dua',
+            'idkategori' => 'C',
+            'pengarang'=>'Angle Helga',
+            'penerbit' => 'Kompas',
+            'kota_terbit' => 'Semarang',
+            'editor' => 'Fayza A.',
+            'file_gambar' => 'book1.png',
+            'stok' => '10',
+            'stok_tersedia' => '4',
         ],
 
     ];

@@ -14,9 +14,15 @@ return new class extends Migration
         Schema::create('view_books', function (Blueprint $table) {
             $table->id();
             $table->string("isbn", 20)->unique();
-            $table->string("author", 50);
-            $table->string("title", 100);
-            $table->float("price", 10);
+            $table->string("judul", 100);
+            $table->string("idkategori", 20)->unique();
+            $table->string("pengarang", 50);
+            $table->string("penerbit", 50);
+            $table->string("kota_terbit", 50);
+            $table->string("editor", 50);
+            $table->string("file_gambar");
+            $table->integer("stok");
+            $table->integer("stok_tersedia");
             $table->timestamps();
         });
     }

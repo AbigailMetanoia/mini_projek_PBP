@@ -30,13 +30,10 @@
                                                 ISBN
                                                 </th>
                                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Author
+                                                Judul
                                                 </th>
                                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Title
-                                                </th>
-                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Price (Rupiah)
+                                                Pengarang
                                                 </th>
                                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Action
@@ -52,15 +49,14 @@
                                         <tr>
                                             <td style="text-align: center;">{{ $book->id }}</td>
                                             <td style="text-align: center;">{{ $book->isbn }}</td>
-                                            <td style="text-align: center;">{{ $book->author }}</td>
-                                            <td style="text-align: center;">{{ $book->title }}</td>
-                                            <td style="text-align: center;">{{ $book->price }}</td>
+                                            <td style="text-align: center;">{{ $book->judul }}</td>
+                                            <td style="text-align: center;">{{ $book->pengarang }}</td>
                                             <td style="text-align: center;">
                                                 <a class="badge badge-sm bg-gradient-success">Add to Cart</a>
-                                                <a class="badge badge-sm bg-gradient-secondary">Details</a>
+                                                <a href="{{ route('detailsBook', ['id' => $book->id]) }}" class="badge badge-sm bg-gradient-secondary">Details</a>
                                             </td>
                                         </tr>
-                                         @endforeach
+                                        @endforeach
 
                                     </table>
                                 </div>
