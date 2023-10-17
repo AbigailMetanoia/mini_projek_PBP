@@ -12,13 +12,13 @@
                                         <h5 class="mb-0" style="text-align: center;">Rekomendasi Buku Untukmu !</h5>
                                     </div>
                                     <div class="search-bar">
-                                        <input  type="text" wire:model='search' placeholder="Search..." id="search-input">
-                                        <button class= "btn btn-primary" id="search-button">Search</button>
+                                        {{-- <input  type="text" wire:model='search' placeholder="Search..." id="search-input">
+                                        <button class= "btn btn-primary" id="search-button">Search</button> --}}
+                                        <div class="input-group">
+                                            <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                                            <input type="search" wire:model='search' class="form-control" placeholder="Search...">
+                                        </div>
                                     </div>
-                                    {{-- <div class="input-group">
-                                        <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                                        <input type="search" wire:model='search' class="form-control" placeholder="Cari mahasiswa...">
-                                    </div> --}}
                                 </div>
                             </div>
                             <br>
