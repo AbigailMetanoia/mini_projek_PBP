@@ -11,7 +11,8 @@ class Dashboard extends Component
 
     public function render()
     {
-        $viewBooks = ViewBooks::where(function($query){
+        $viewBooks = ViewBooks::all()
+        ->where(function($query){
             $query->where('isbn','like','%'.$this->search.'%')
             ->orwhere('author','like','%'.$this->search.'%')
             ->orwhere('title','like','%'.$this->search.'%')
