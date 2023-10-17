@@ -66,10 +66,9 @@
                                         @endforeach
 
                                     </table>
-                                    {{-- <div class="mt-3 mx-3 d-flex align-items-center justify-content-center text-danger">
-                                        {{ $users->links() }}
-
-                                    </div> --}}
+                                    <div class="mt-3 mx-3 d-flex align-items-center justify-content-center text-danger">
+                                        {{ $view_books->links() }}
+                                    </div>
                                 </div>
                             </div>
         </div>

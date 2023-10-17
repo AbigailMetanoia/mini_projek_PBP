@@ -1,13 +1,17 @@
 <?php
 
 namespace App\Http\Livewire;
-use App\Models\ViewBooks;
-
 use Livewire\Component;
+
+use App\Models\ViewBooks;
+use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 
 class Dashboard extends Component
 {
-    // use WithPagination;
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+
     public $search = '';
 
 
@@ -45,7 +49,10 @@ class Dashboard extends Component
             ->orWhere('penerbit','like','%'.$this->search.'%')
             ->orWhere('kota_terbit','like','%'.$this->search.'%')
             ->orWhere('editor','like','%'.$this->search.'%');
-        })->get();
+        })
+        ->orderBy('id','ASC')
+        ->paginate(10);
+        // ->get();
         return view('livewire.dashboard', ['view_books' => $viewBooks]);
     }
 
