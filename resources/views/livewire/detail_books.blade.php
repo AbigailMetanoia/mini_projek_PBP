@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        Detail Buku
+                        <h5 class="mb-0" style="text-align: center;">Detail Buku</h5>
                     </div>
                     <div class="card-body">
                         <table class="table">
