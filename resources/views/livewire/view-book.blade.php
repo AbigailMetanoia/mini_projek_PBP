@@ -2,12 +2,12 @@
     {{-- <h5>Id: {{ $bookId }}</h5>
     <h5>Info: {{ $bookInfo }}</h5> --}}
     {{-- Nothing in the world is as soft and yielding as water. --}}
-    <div class="container">
+    <div class="container-fluid py-4">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        Detail Buku
+                        <h5 class="font-weight-bolder" style="font-size: 24px;">Detail Buku &#x1F4D6;</h5>
                     </div>
                     <div class="card-body">
                         <table class="table">
@@ -46,7 +46,7 @@
                             <tr>
                                 <th>File Gambar</th>
                                 <td>
-                                    <img src="{{ asset('img/b' . $book->file_gambar) }}" alt="{{ $book->judul }}" class="img-thumbnail" style="max-width: 200px;">
+                                    <img src="{{ asset('storage/' . $book->file_gambar) }}" style="max-width: 500px; max-height: 500px;">
                                 </td>
                             </tr>
                             <tr>

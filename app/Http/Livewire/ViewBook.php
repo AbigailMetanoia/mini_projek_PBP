@@ -26,14 +26,6 @@ class ViewBook extends Component
         // $this->urlID = intval($existingUser->id);
     }
 
-    public function detailsBook($id)
-    {
-        $this->bookId = $id;
-        $this->book = ViewBooks::find($id);
-
-        return view('livewire.detail_books', ['view_books' => $book]);
-    }
-
     /**
      * Show the form for creating a new resource.
      */
