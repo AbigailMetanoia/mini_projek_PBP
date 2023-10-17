@@ -44,9 +44,9 @@
                                             </tr>
                                         </thead>
                                         <?php
-                                        if (DB::connection()->getPdo()) {
-                                            echo "Berhasil terhubung ke database: " . DB::connection()->getDatabaseName();
-                                        }
+                                        // if (DB::connection()->getPdo()) {
+                                        //     echo "Berhasil terhubung ke database: " . DB::connection()->getDatabaseName();
+                                        // }
                                         ?>
                                         @foreach($view_books as $book)
                                         <tr>
