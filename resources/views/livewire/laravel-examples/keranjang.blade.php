@@ -20,7 +20,10 @@
                                                       Judul
                                                       </th>
                                                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                      Action
+                                                      Tanggal Pinjam
+                                                      </th>
+                                                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                       Action
                                                       </th>
                                                   </tr>
                                               </thead>
@@ -29,21 +32,20 @@
                                               //     echo "Berhasil terhubung ke database: " . DB::connection()->getDatabaseName();
                                               // }
                                               ?>
-                                              {{-- @foreach($view_books as $book)
+                                              @foreach($keranjang as $cart)
                                               <tr>
-                                                  <td style="text-align: center;">{{ $book->id }}</td>
-                                                  <td style="text-align: center;">{{ $book->isbn }}</td>
-                                                  <td style="text-align: center;">{{ $book->author }}</td>
-                                                  <td style="text-align: center;">{{ $book->title }}</td>
-                                                  <td style="text-align: center;">{{ $book->price }}</td>
+                                                  <td style="text-align: center;">{{ $cart->id }}</td>
+                                                  <td style="text-align: center;">{{ $cart->isbn }}</td>
+                                                  <td style="text-align: center;">{{ $cart->judul }}</td>
+                                                  <td style="text-align: center;">{{ $cart->created_at}}</td>
                                                   <td style="text-align: center;">
-                                                      <a class="badge badge-sm bg-gradient-success">Add to Cart</a>
-                                                      <a class="badge badge-sm bg-gradient-secondary">Details</a>
+                                                    <a href="{{ route('keranjang.delete', ['id' => $cart->id]) }}" class="badge badge-sm bg-gradient-warning">Delete</a>
                                                   </td>
                                               </tr>
-                                               @endforeach --}}
+                                               @endforeach
 
                                           </table>
+
                                       </div>
                                   </div>
               </div>

@@ -8,6 +8,7 @@ class Riwayat extends Component
 {
     public function render()
     {
-        return view('livewire.tables');
+        $detail_transaksi = Riwayat::all();
+        return view('livewire.tables', ['detail_transaksi' => $detail_transaksi]);
     }
 }

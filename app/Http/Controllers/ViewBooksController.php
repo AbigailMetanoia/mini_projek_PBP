@@ -18,13 +18,6 @@ class ViewBooksController extends Controller
         return view('livewire.dashboard', ['view_books' => $viewBooks]);
     }
 
-    public function detailsBook($id)
-    {
-        $book = ViewBooks::find($id);
-
-        return view('livewire.detail_books', ['view_books' => $book]);
-    }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -73,15 +66,15 @@ class ViewBooksController extends Controller
         //
     }
 
-    public function search(ViewBooks $request)
-    {
-        $query = $request->input('query');
+    // public function search(ViewBooks $request)
+    // {
+    //     $query = $request->input('query');
 
-        $results = ViewBooks::where('isbn', 'like', '%' . $query . '%')
-                    ->orWhere('title', 'like', '%' . $query . '%')
-                    ->orWhere('author', 'like', '%' . $query . '%')
-                    ->get();
+    //     $results = ViewBooks::where('isbn', 'like', '%' . $query . '%')
+    //                 ->orWhere('title', 'like', '%' . $query . '%')
+    //                 ->orWhere('author', 'like', '%' . $query . '%')
+    //                 ->get();
 
-        return response()->json($results);
-    }
+    //     return response()->json($results);
+    // }
 }

@@ -43,12 +43,19 @@ Route::get('/reset-password/{id}',ResetPassword::class)->name('reset-password')-
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
+
     Route::get('/riwayat_transaksi', Riwayat::class)->name('riwayat_transaksi');
+
     Route::get('/static-sign-in', StaticSignIn::class)->name('sign-in');
     Route::get('/static-sign-up', StaticSignUp::class)->name('static-sign-up');
+
     Route::get('/laravel-keranjang', Keranjang::class)->name('keranjang');
+    Route::get('/keranjang/delete/{id}', 'KeranjangController@delete')->name('keranjang.delete');
+
     Route::get('/search', 'ViewBooksController@search')->name('search');
-    // Route::get('/details-book/{id}', 'ViewBooksController@detailsBook')->name('detailsBook');
+    // Route::get('/details-book/{id}', 'ViewBooksController@detailsBook')->name('detailsBook')
+    // Route::get('/add-to-cart/{id}', 'ViewController@addToCart')->name('addtocart');;
+    Route::post('/rating-buku/{id}/store', 'RatingBukuController@store')->name('store');
     Route::get('/details-book/{id}', ViewBook::class)->name('detailsBook');
 
 });

@@ -26,9 +26,7 @@ class ViewBook extends Component
         // $this->urlID = intval($existingUser->id);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         //

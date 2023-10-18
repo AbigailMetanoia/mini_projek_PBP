@@ -32,20 +32,15 @@
                                               //     echo "Berhasil terhubung ke database: " . DB::connection()->getDatabaseName();
                                               // }
                                               ?>
-                                              {{-- @foreach($view_books as $book)
-                                              <tr>
-                                                  <td style="text-align: center;">{{ $book->id }}</td>
-                                                  <td style="text-align: center;">{{ $book->isbn }}</td>
-                                                  <td style="text-align: center;">{{ $book->author }}</td>
-                                                  <td style="text-align: center;">{{ $book->title }}</td>
-                                                  <td style="text-align: center;">{{ $book->price }}</td>
-                                                  <td style="text-align: center;">
-                                                      <a class="badge badge-sm bg-gradient-success">Add to Cart</a>
-                                                      <a class="badge badge-sm bg-gradient-secondary">Details</a>
-                                                  </td>
-                                              </tr>
-                                               @endforeach --}}
-
+                                              @foreach($detail_transaksi as $riwayat)
+                                                    <tr>
+                                                        <td style="text-align: center;">{{ $riwayat->idtransaksi }}</td>
+                                                        <td style="text-align: center;">{{ $riwayat->idbuku }}</td>
+                                                        <td style="text-align: center;">{{ $riwayat->tgl_kembali }}</td>
+                                                        <td style="text-align: center;">{{ $riwayat->denda }}</td>
+                                                        <td style="text-align: center;">{{ $riwayat->idpetugas }}</td>
+                                                    </tr>
+                                              @endforeach
                                           </table>
                                       </div>
                                   </div>
