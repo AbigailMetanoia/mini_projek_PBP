@@ -3,11 +3,15 @@
 namespace App\Http\Livewire\Auth;
 
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class SignUp extends Component
 {
+    use WithFileUploads;
+
     public $noktp = '';
     public $name = '';
     public $alamat = '';
@@ -36,7 +40,11 @@ class SignUp extends Component
 
 
     public function register() {
+        $validatedData = $this->validate();
         $this->validate();
+        if($this->file_ktp){
+            $validatedData['file_ktp'] = $this->file_ktp->store('files_ktp');
+        }
         $user = User::create([
             'noktp' => $this->noktp,
             'name' => $this->name,
@@ -51,6 +59,7 @@ class SignUp extends Component
         auth()->login($user);
 
         return redirect('/dashboard');
+        // return redirect('/');
     }
 
     public function render()
