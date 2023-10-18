@@ -18,7 +18,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::factory()->create([
+            'noktp' => '123456',
             'name' => 'admin',
+            'alamat' => 'Jl. ABC',
+            'no_telp' => '08911',
             'email' => 'admin@softui.com',
             'password' => Hash::make('secret')
         ]);
