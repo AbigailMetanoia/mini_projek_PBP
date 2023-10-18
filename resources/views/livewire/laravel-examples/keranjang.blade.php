@@ -28,15 +28,15 @@
                                                   </tr>
                                               </thead>
                                               <?php
-                                              // if (DB::connection()->getPdo()) {
-                                              //     echo "Berhasil terhubung ke database: " . DB::connection()->getDatabaseName();
-                                              // }
+                                            //   if (DB::connection()->getPdo()) {
+                                            //       echo "Berhasil terhubung ke database: " . DB::connection()->getDatabaseName();
+                                            //   }
                                               ?>
                                               @foreach($keranjang as $cart)
                                               <tr>
                                                   <td style="text-align: center;">{{ $cart->id }}</td>
                                                   <td style="text-align: center;">{{ $cart->isbn }}</td>
-                                                  <td style="text-align: center;">{{ $cart->judul }}</td>
+                                                  <td style="text-align: center;a">{{ $cart->judul }}</td>
                                                   <td style="text-align: center;">{{ $cart->created_at}}</td>
                                                   <td style="text-align: center;">
                                                     <a href="{{ route('keranjang.delete', ['id' => $cart->id]) }}" class="badge badge-sm bg-gradient-warning">Delete</a>

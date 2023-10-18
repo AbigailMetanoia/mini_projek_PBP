@@ -1,6 +1,7 @@
-<div class="row">
+<div class="container-fluid py-4">
     <div class="row">
-        <h5 class="font-weight-bolder" style="font-size: 24px;">Riwayat Transaksi &#x23F2;</h5>
+        <h5 class="font-weight-bolder" style="font-size: 24px;">Keranjang &#x1F6D2;</h5>
+        {{-- <h5>book: {{ $keranjang }}</h5> --}}
         <br>
         <br>
         <div class="col-12">
@@ -12,46 +13,48 @@
                                 <tr>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        ID TRANSAKSI
+                                        ID
                                     </th>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        ID BUKU
+                                        ISBN
                                     </th>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Tanggal Kembali
+                                        Judul
                                     </th>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Status
+                                        Tanggal Pinjam
                                     </th>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Denda
-                                    </th>
-                                    <th
-                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Petugas
+                                        Action
                                     </th>
                                 </tr>
                             </thead>
                             <?php
-                                              // if (DB::connection()->getPdo()) {
-                                              //     echo "Berhasil terhubung ke database: " . DB::connection()->getDatabaseName();
-                                              // }
-                            ?>
-                            @foreach($detail_transaksi as $riwayat)
+                                      // if (DB::connection()->getPdo()) {
+                                      //     echo "Berhasil terhubung ke database: " . DB::connection()->getDatabaseName();
+                                      // }
+                                      ?>
+                            @foreach($keranjang as $cart)
                             <tr>
-                                <td style="text-align: center;">{{ $riwayat->idtransaksi }}</td>
-                                <td style="text-align: center;">{{ $riwayat->idbuku }}</td>
-                                <td style="text-align: center;">{{ $riwayat->tgl_kembali }}</td>
-                                <td style="text-align: center;">{{ $riwayat->status }}</td>
-                                <td style="text-align: center;">{{ $riwayat->denda }}</td>
-                                <td style="text-align: center;">{{ $riwayat->idpetugas }}</td>
+                                <td style="text-align: center;">{{ $cart->id }}</td>
+                                <td style="text-align: center;">{{ $cart->isbn }}</td>
+                                <td style="text-align: center;a">{{ $cart->judul }}</td>
+                                <td style="text-align: center;">{{ $cart->created_at}}</td>
+                                <td style="text-align: center;">
+                                    {{-- <a href="{{ route('keranjang.delete', ['id' => $cart->id]) }}"
+                                        class="badge badge-sm bg-gradient-warning">Delete</a> --}}
+                                    <a wire:click='deleteKeranjang({{ $cart->id }})'
+                                        class="badge badge-sm bg-gradient-warning">Delete</a>
+                                </td>
                             </tr>
                             @endforeach
+
                         </table>
+
                     </div>
                 </div>
             </div>

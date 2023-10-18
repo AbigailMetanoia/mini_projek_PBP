@@ -4,13 +4,17 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\ViewBooks;
+use App\Models\RatingBuku;
 use App\Http\Requests\StoreViewBooksRequest;
 use App\Http\Requests\UpdateViewBooksRequest;
 
 class ViewBook extends Component
 {
-    public $bookId;
-    public $book;
+    public $bookId, $rating, $book;
+
+    protected $rules = [
+        'komentar' => 'max:200',
+    ];
 
     public function index()
     {
@@ -80,17 +84,24 @@ class ViewBook extends Component
                     ->orWhere('title', 'like', '%' . $query . '%')
                     ->orWhere('author', 'like', '%' . $query . '%')
                     ->get();
-
         return response()->json($results);
+    }
+
+    public function review(){
+        $validateData = $this->validate;
+        Review::create([
+            'isbn' =>
+        ]);
     }
 
     public function render()
     {
         $this->book = ViewBooks::find($this->bookId);
+        $this->rating = RatingBuku::where('isbn','=',$this->book['isbn'])->get() ;
         return view('livewire.view-book', [
-            'bookId' => $this->bookId,
-            'bookInfo' => $this->book,
             'book' => $this->book,
+            // 'isbn' => $this->book->isbn,
+            'reviews' => $this->rating,
         ]);
 
         // $book = ViewBooks::find($this->book);

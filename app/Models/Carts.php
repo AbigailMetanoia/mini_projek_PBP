@@ -5,9 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Keranjang extends Model
+class Carts extends Model
 {
     protected $primaryKey = 'id';
     protected $table = 'keranjang';
+    protected $fillable = [
+        'isbn',
+        'judul',
+    ];
     // use HasFactory;
 }

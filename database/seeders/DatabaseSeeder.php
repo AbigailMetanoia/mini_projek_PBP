@@ -3,11 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use App\Models\Riwayat;
 
-use App\Models\Keranjang;
+use App\Models\Carts;
 use App\Models\ViewBooks;
 use App\Models\RatingBuku;
+use App\Models\DetailTransaksi;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -84,12 +84,14 @@ class DatabaseSeeder extends Seeder
                 'tgl_kembali'=> '17/08/2020',
                 'denda'=> '50000',
                 'idpetugas'=> '01',
+                'iduser' => '1',
+
             ],
         ];
 
 
         foreach($detail_transaksi as $riwayat){
-            Riwayat::create($riwayat);
+            DetailTransaksi::create($riwayat);
         }
 
 
@@ -107,7 +109,7 @@ class DatabaseSeeder extends Seeder
 
 
         foreach($keranjang as $cart){
-            Keranjang::create($cart);
+            Carts::create($cart);
         }
 
         // Seed Review

@@ -12,7 +12,7 @@ class KeranjangSeeder extends Seeder
      */
     public function run(): void
     {
-        $keranjang = [
+        $detail_keranjang = [
             // [
             //     'isbn' => 'A1',
             //     'judul' => 'Hitung Jari',
@@ -24,7 +24,7 @@ class KeranjangSeeder extends Seeder
         ];
 
 
-        foreach($keranjang as $cart){
+        foreach($detail_keranjang as $cart){
             Keranjang::create($cart);
         }
     }

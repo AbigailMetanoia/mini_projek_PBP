@@ -20,6 +20,7 @@ class RiwayatSeeder extends Seeder
                  'tgl_kembali'=> '17/08/2020',
                  'denda'=> '50000',
                  'idpetugas'=> '01',
+
             ],
         ];
 

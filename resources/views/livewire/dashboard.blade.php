@@ -10,6 +10,8 @@
                                 <div class="d-flex flex-row justify-content-between">
                                     <div>
                                         <h5 class="mb-0" style="text-align: center;">Rekomendasi Buku Untukmu !</h5>
+                                        <h5>data: {{ $books }}</h5>
+                                        {{-- <h5>data: {{ $books['isbn'] }}</h5> --}}
                                     </div>
                                     <div class="search-bar">
                                         {{-- <input  type="text" wire:model='search' placeholder="Search..." id="search-input">
@@ -59,7 +61,8 @@
                                             <td style="text-align: center;">{{ $book->judul }}</td>
                                             <td style="text-align: center;">{{ $book->pengarang }}</td>
                                             <td style="text-align: center;">
-                                                <a href="{{ route('keranjang')}}" class="badge badge-sm bg-gradient-success">Add to Cart</a>
+                                                {{-- <a href="{{ route('keranjang', ['id' => $book->id]) }}" class="badge badge-sm bg-gradient-success">Add to Cart</a> --}}
+                                                <a wire:click='addToCart({{ $book->id }})' class="badge badge-sm bg-gradient-success">Add to Cart</a>
                                                 <a href="{{ route('detailsBook', ['id' => $book->id]) }}" class="badge badge-sm bg-gradient-secondary">Details</a>
                                             </td>
                                         </tr>

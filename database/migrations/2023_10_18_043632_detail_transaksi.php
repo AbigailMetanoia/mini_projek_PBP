@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string("idbuku", 20)->unique();
             $table->string("tgl_kembali");
             $table->string("denda");
+            $table->string("status")->default('Belum Dikembalikan');
+            $table->string("iduser");
             $table->string("idpetugas", 100);
             $table->timestamps();
         });

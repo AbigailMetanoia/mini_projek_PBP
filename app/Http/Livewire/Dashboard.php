@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Livewire;
-use Livewire\Component;
+use App\Models\Carts;
 
+use Livewire\Component;
 use App\Models\ViewBooks;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,21 @@ class Dashboard extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $search = '';
+    public $books;
 
+    public function addToCart($bookId){
+        $book = ViewBooks::find($bookId);
+        $this->books = $book;
+        $cart = [
+            // 'isbn' => $this->books->isbn,
+            // 'judul' => $this->books->judul,
+            'isbn' => 'A2',
+            'judul' => 'Beban Hidup',
+        ];
+        Carts::create($cart);
+
+        return redirect('/keranjang');
+    }
 
     public function render()
     {
@@ -29,7 +44,11 @@ class Dashboard extends Component
         ->orderBy('id','ASC')
         ->paginate(10);
         // ->get();
-        return view('livewire.dashboard', ['view_books' => $viewBooks]);
+        return view('livewire.dashboard', [
+            'view_books' => $viewBooks,
+            'books' => $this->books,
+            // 'isbn' => $this->books['isbn'],
+        ]);
     }
 
 

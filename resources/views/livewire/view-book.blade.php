@@ -58,6 +58,7 @@
                     <div class="card mt-4">
                         <div class="card-header">
                             <h5 class="font-weight-bolder" style="font-size: 24px;">Review dan Rating &#x2B50;</h5>
+                            {{-- <h5>isbn: {{ $isbn }}</h5> --}}
                         </div>
                         <div class="card-body">
                              <table class="table table-bordered">
@@ -68,15 +69,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{-- @foreach ($reviews as $review)
+                                        @foreach ($reviews as $review)
                                         <tr>
-                                            <td>{{ $review->review }}</td>
+                                            <td>{{ $review->komentar }}</td>
                                             <td>{{ $review->skor_rating }}</td>
                                         </tr>
-                                        @endforeach --}}
+                                        @endforeach
                                     </tbody>
                                 </table>
-                            <form>
+                            <form wire:submit.prevent="review" action="#" method="POST" role="form text-left"
+                            enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="komentar">Komentar:</label>
                                     <textarea class="form-control" id="komentar" name="komentar" rows="3"></textarea>
