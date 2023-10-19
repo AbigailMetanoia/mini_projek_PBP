@@ -2,18 +2,23 @@
 
 namespace App\Http\Livewire;
 
+use Carbon\Carbon;
 use Livewire\Component;
 use App\Models\ViewBooks;
 use App\Models\RatingBuku;
+use App\Models\KomentarBuku;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreViewBooksRequest;
 use App\Http\Requests\UpdateViewBooksRequest;
 
 class ViewBook extends Component
 {
-    public $bookId, $rating, $book;
+    public $bookId, $rating, $book, $reviews, $komentar, $userRating, $noKtpUser, $tlgRating;
 
     protected $rules = [
         'komentar' => 'max:200',
+        'userRating' => 'required',
+
     ];
 
     public function index()
@@ -88,23 +93,58 @@ class ViewBook extends Component
     }
 
     public function review(){
-        $validateData = $this->validate;
-        Review::create([
-            // 'isbn' =>
-        ]);
+        // $validateData = $this->validate;
+        // $this->validate();
+
+        if(RatingBuku::find($this->noKtpUser) === null){
+            RatingBuku::create([
+                'skor_rating' => $this->userRating,
+                'isbn' => $this->book['isbn'],
+                'noktp' => $this->noKtpUser,
+                'tgl_rating' => $this->tlgRating,
+            ]);
+            KomenterBuku::create([
+                'komentar' => $this->komentar,
+                'isbn' => $this->book['isbn'],
+                'noktp' => $this->noKtpUser,
+            ]);
+        }
+
     }
+
+
 
     public function render()
     {
         $this->book = ViewBooks::find($this->bookId);
-        $this->rating = RatingBuku::where('isbn','=',$this->book['isbn'])->get() ;
+        $this->rating = RatingBuku::where('isbn','=',$this->book['isbn'])->avg('skor_rating');
+        $this->tlgRating = Carbon::now();
+
+        $this->reviews = KomentarBuku::where('isbn','=',$this->book['isbn'])->get();
+
+        $user = Auth::user();
+        $this->noKtpUser = $user->noktp;
+        $isNoKtp = RatingBuku::find($this->noKtpUser);
+
+
+        // if(RatingBuku::find($noKtpUser) != null){
+        //     $isNoKtp = RatingBuku::find($noKtpUser);
+        // }
+        // else{
+        //     $isNoKtp = 1;
+        // }
+
+
+        // if(RatingBuku::)
+
         return view('livewire.view-book', [
             'book' => $this->book,
-            // 'isbn' => $this->book->isbn,
-            // 'reviews' => $this->rating,
+            'rating' => $this->rating,
+            'reviews' => $this->reviews,
+
+            'noKtp' => $this->noKtpUser,
+            'isNoKtp' => $isNoKtp,
         ]);
-        // $book = ViewBooks::find($this->book);
-        // return view('livewire.detail_books', ['book' => $this->book]);
 
     }
 }

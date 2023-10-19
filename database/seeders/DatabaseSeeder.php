@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Carts;
 use App\Models\ViewBooks;
 use App\Models\RatingBuku;
+use App\Models\KomentarBuku;
 use App\Models\DetailTransaksi;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -113,20 +114,32 @@ class DatabaseSeeder extends Seeder
         }
 
         // Seed Review
-        $reviews = [
+        $ratings = [
             [
                 'isbn' => 'A1',
                 'noktp' => '111',
                 'skor_rating' => '3',
-                'komentar' => 'Keren!',
+                'tgl_rating' => '2023/20/10'
 
             ],
         ];
 
-        foreach($reviews as $review){
-            RatingBuku::create($review);
+        foreach($ratings as $rating){
+            RatingBuku::create($rating);
         }
 
 
+        // Seed Review
+        $komentars = [
+            [
+                'isbn' => 'A1',
+                'noktp' => '111',
+                'komentar' => 'Saya tidak suka buku ini, karena isinya terlalu ringan.',
+            ],
+            ];
+
+        foreach($komentars as $komentar){
+            KomentarBuku::create($komentar);
+        }
     }
 }

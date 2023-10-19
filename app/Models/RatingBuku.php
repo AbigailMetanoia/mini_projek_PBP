@@ -9,5 +9,8 @@ class RatingBuku extends Model
 {
     protected $primaryKey = 'noktp';
     protected $table = 'rating_buku';
+    protected $fillable = [
+        'skor_rating'
+    ];
     // use HasFactory;
 }

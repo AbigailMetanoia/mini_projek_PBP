@@ -53,39 +53,61 @@
                                 <th>Stok Tersedia</th>
                                 <td>{{ $book->stok_tersedia }}</td>
                             </tr>
+                            <tr>
+                                <th >Rating &#x2B50; </th>
+                                <td>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <span class="me-2 text-xs font-weight-bold">{{ round($rating,1) }}</span>
+                                        <div>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-gradient-{{ ($rating>1.5?(($rating>3.5)?'success':'info'):'danger') }}" role="progressbar" aria-valuenow="{{ $rating*20 }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $rating*20 }}%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+
+                            </tr>
                         </table>
+                        {{-- <h5 class="font-weight-bolder" style="font-size: 18px;">Rating &#x2B50; {{ $rating }}</h5> --}}
                     </div>
                     <div class="card mt-4">
                         <div class="card-header">
-                            <h5 class="font-weight-bolder" style="font-size: 24px;">Review dan Rating &#x2B50;</h5>
+                            <h5 class="font-weight-bolder" style="font-size: 24px;">Review</h5>
                             {{-- <h5>isbn: {{ $isbn }}</h5> --}}
                         </div>
                         <div class="card-body">
-                             <table class="table table-bordered">
+                            <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Review</th>
-                                            <th>Rating</th>
+                                            <th class="border-0">Review</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{-- @foreach ($reviews as $review)
+
+                                        @foreach ($reviews as $review)
                                         <tr>
-                                            <td>{{ $review->komentar }}</td>
-                                            <td>{{ $review->skor_rating }}</td>
+                                            <td class="border">{{ $review->komentar }}</td>
                                         </tr>
-                                        @endforeach --}}
+                                        @endforeach
                                     </tbody>
                                 </table>
                             <form wire:submit.prevent="review" action="#" method="POST" role="form text-left"
                             enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="komentar">Komentar:</label>
-                                    <textarea class="form-control" id="komentar" name="komentar" rows="3"></textarea>
+                                    <textarea wire:model='komentar' class="form-control" id="komentar" name="komentar" rows="3"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="rating">Rating:</label>
-                                    <select class="form-control" id="rating" name="rating">
+                                    {{-- <label for="rating">NoKTP : {{ $noKtp }}</label>
+                                    <label for="rating">Rating: {{ $isNoKtp->skor_rating }}</label> --}}
+                                    <select wire:model='userRating' class="form-control" id="rating" name="rating" >
+                                        @if ($isNoKtp != null)
+                                            <option value="{{ $isNoKtp->skor_rating }}" selected>{{ $isNoKtp->skor_rating }}</option>
+                                            {{-- <h5>Not null {{ $isNoKtp }}</h5> --}}
+                                        @else
+                                            <option selected>Isi ranting</option>
+                                            {{-- <h5>null 2</h5> --}}
+                                        @endif
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
