@@ -90,7 +90,7 @@ class ViewBook extends Component
     public function review(){
         $validateData = $this->validate;
         Review::create([
-            'isbn' =>
+            // 'isbn' =>
         ]);
     }
 
@@ -101,11 +101,9 @@ class ViewBook extends Component
         return view('livewire.view-book', [
             'book' => $this->book,
             // 'isbn' => $this->book->isbn,
-            'reviews' => $this->rating,
+            // 'reviews' => $this->rating,
         ]);
-
         // $book = ViewBooks::find($this->book);
-
         // return view('livewire.detail_books', ['book' => $this->book]);
 
     }

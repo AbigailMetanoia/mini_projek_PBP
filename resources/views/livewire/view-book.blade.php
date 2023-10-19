@@ -69,12 +69,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($reviews as $review)
+                                        {{-- @foreach ($reviews as $review)
                                         <tr>
                                             <td>{{ $review->komentar }}</td>
                                             <td>{{ $review->skor_rating }}</td>
                                         </tr>
-                                        @endforeach
+                                        @endforeach --}}
                                     </tbody>
                                 </table>
                             <form wire:submit.prevent="review" action="#" method="POST" role="form text-left"
