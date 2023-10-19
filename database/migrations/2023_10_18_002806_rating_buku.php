@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string("isbn", 20)->unique();
             $table->string("noktp", 20)->unique();
             $table->integer("skor_rating",)->unsigned();
-            $table->string("komentar");
+            $table->string("tgl_rating");
             $table->timestamps();
         });
     }
