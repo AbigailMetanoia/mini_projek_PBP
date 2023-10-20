@@ -103,7 +103,7 @@ class ViewBook extends Component
                 'noktp' => $this->noKtpUser,
                 'tgl_rating' => $this->tlgRating,
             ]);
-            KomenterBuku::create([
+            KomentarBuku::create([
                 'komentar' => $this->komentar,
                 'isbn' => $this->book['isbn'],
                 'noktp' => $this->noKtpUser,

@@ -7,7 +7,7 @@
                         <h5 class="font-weight-bolder" style="font-size: 24px;">Detail Buku &#x1F4D6;</h5>
                     </div>
                     <div class="card-body">
-                        <table class="table">
+                        <table class="table ">
                             <tr>
                                 <th>ID Buku</th>
                                 <td>{{ $book->id }}</td>
@@ -56,8 +56,8 @@
                             <tr>
                                 <th >Rating &#x2B50; </th>
                                 <td>
-                                    <div class="d-flex align-items-center justify-content-center">
-                                        <span class="me-2 text-xs font-weight-bold">{{ round($rating,1) }}</span>
+                                    <div class='d-flex align-items-center'>
+                                        <span class="me-2 ">{{ round($rating,1) }}</span>
                                         <div>
                                             <div class="progress">
                                                 <div class="progress-bar bg-gradient-{{ ($rating>1.5?(($rating>3.5)?'success':'info'):'danger') }}" role="progressbar" aria-valuenow="{{ $rating*20 }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $rating*20 }}%;"></div>
@@ -95,18 +95,14 @@
                             enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="komentar">Komentar:</label>
-                                    <textarea wire:model='komentar' class="form-control" id="komentar" name="komentar" rows="3"></textarea>
+                                    <textarea wire:model='komentar' class="form-control disabled" id="komentar" name="komentar" rows="3"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    {{-- <label for="rating">NoKTP : {{ $noKtp }}</label>
-                                    <label for="rating">Rating: {{ $isNoKtp->skor_rating }}</label> --}}
-                                    <select wire:model='userRating' class="form-control" id="rating" name="rating" >
+                                    <select wire:model='userRating' class="form-control" id="rating" name="rating" {{ ($isNoKtp != null)? 'disabled': '' }}>
                                         @if ($isNoKtp != null)
                                             <option value="{{ $isNoKtp->skor_rating }}" selected>{{ $isNoKtp->skor_rating }}</option>
-                                            {{-- <h5>Not null {{ $isNoKtp }}</h5> --}}
                                         @else
                                             <option selected>Isi ranting</option>
-                                            {{-- <h5>null 2</h5> --}}
                                         @endif
                                         <option value="1">1</option>
                                         <option value="2">2</option>

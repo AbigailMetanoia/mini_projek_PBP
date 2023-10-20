@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('komentar_bukus', function (Blueprint $table) {
             $table->id();
-            $table->string("isbn", 20)->unique();
-            $table->string("noktp", 20)->unique();
+            $table->string("isbn", 20);
+            $table->string("noktp", 20);
             $table->string("komentar");
             $table->timestamps();
         });
