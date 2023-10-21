@@ -13,7 +13,9 @@ use App\Http\Requests\UpdateViewBooksRequest;
 
 class ViewBook extends Component
 {
-    public $bookId, $rating, $book, $reviews, $komentar, $userRating, $noKtpUser, $tlgRating;
+    public $bookId, $rating, $book, $ratings, $reviews, $komentar, $userRating, $noKtpUser, $tlgRating, $avgRating;
+
+    public $test;
 
     protected $rules = [
         'komentar' => 'max:200',
@@ -93,10 +95,8 @@ class ViewBook extends Component
     }
 
     public function review(){
-        // $validateData = $this->validate;
-        // $this->validate();
-
-        if(RatingBuku::find($this->noKtpUser) === null){
+        $ratingUser = RatingBuku::find($this->noKtpUser);
+        if($ratingUser === null){
             RatingBuku::create([
                 'skor_rating' => $this->userRating,
                 'isbn' => $this->book['isbn'],
@@ -108,6 +108,31 @@ class ViewBook extends Component
                 'isbn' => $this->book['isbn'],
                 'noktp' => $this->noKtpUser,
             ]);
+            $this->test = 1;
+        }
+        elseif(RatingBuku::whereNot('isbn','=',$this->book['isbn'])->whereNot('')){ // sampe sinin pusing
+            RatingBuku::create([
+                'skor_rating' => $this->userRating,
+                'isbn' => $this->book['isbn'],
+                'noktp' => $this->noKtpUser,
+                'tgl_rating' => $this->tlgRating,
+            ]);
+            KomentarBuku::create([
+                'komentar' => $this->komentar,
+                'isbn' => $this->book['isbn'],
+                'noktp' => $this->noKtpUser,
+            ]);
+            $this->test = 2;
+
+        }
+        else{
+            KomentarBuku::create([
+                'komentar' => $this->komentar,
+                'isbn' => $this->book['isbn'],
+                'noktp' => $this->noKtpUser,
+            ]);
+            $this->test = 3;
+
         }
 
     }
@@ -117,8 +142,10 @@ class ViewBook extends Component
     public function render()
     {
         $this->book = ViewBooks::find($this->bookId);
-        $this->rating = RatingBuku::where('isbn','=',$this->book['isbn'])->avg('skor_rating');
+        $rating = RatingBuku::where('isbn','=',$this->book['isbn']);
+        $this->avgRating = $rating->avg('skor_rating');
         $this->tlgRating = Carbon::now();
+        $this->ratings = $rating->get();
 
         $this->reviews = KomentarBuku::where('isbn','=',$this->book['isbn'])->get();
 
@@ -139,11 +166,16 @@ class ViewBook extends Component
 
         return view('livewire.view-book', [
             'book' => $this->book,
-            'rating' => $this->rating,
+            'avgRating' => $this->avgRating,
+
+            'ratings' => $this->ratings,
             'reviews' => $this->reviews,
+
+
 
             'noKtp' => $this->noKtpUser,
             'isNoKtp' => $isNoKtp,
+            'test' => $this->test,
         ]);
 
     }

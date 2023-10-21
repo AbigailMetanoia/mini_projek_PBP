@@ -57,10 +57,10 @@
                                 <th >Rating &#x2B50; </th>
                                 <td>
                                     <div class='d-flex align-items-center'>
-                                        <span class="me-2 ">{{ round($rating,1) }}</span>
+                                        <span class="me-2 ">{{ round($avgRating,1) }}</span>
                                         <div>
                                             <div class="progress">
-                                                <div class="progress-bar bg-gradient-{{ ($rating>1.5?(($rating>3.5)?'success':'info'):'danger') }}" role="progressbar" aria-valuenow="{{ $rating*20 }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $rating*20 }}%;"></div>
+                                                <div class="progress-bar bg-gradient-{{ ($avgRating>1.5?(($avgRating>3.5)?'success':'info'):'danger') }}" role="progressbar" aria-valuenow="{{ $avgRating*20 }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $avgRating*20 }}%;"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -71,35 +71,76 @@
                         {{-- <h5 class="font-weight-bolder" style="font-size: 18px;">Rating &#x2B50; {{ $rating }}</h5> --}}
                     </div>
                     <div class="card mt-4">
-                        <div class="card-header">
-                            <h5 class="font-weight-bolder" style="font-size: 24px;">Review</h5>
+                        <div class="card-header py-2">
+                            <h5 class="font-weight-bolder" style="font-size: 24px;">Review  {{ $test  }}</h5>
                             {{-- <h5>isbn: {{ $isbn }}</h5> --}}
                         </div>
-                        <div class="card-body">
-                            <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th class="border-0">Review</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                        <div class="card-body py-2">
+                            <div>
+                                @foreach ($ratings as $rating)
+                                    <table  class="mb-2 flex">
+                                        <thead>
+                                            <th>
+                                                <div class=" d-flex flex-row rating">
+                                                    @for($i = 0; $i < $rating->skor_rating; $i++)
+                                                        <i class="fa fa-star rating-color"></i>
+                                                    @endfor
+                                                    &nbsp;&nbsp;<small class="fw-light">{{$rating->created_at->format('d M Y');}}</small>
+                                                </div>
+                                            </th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                @php
+                                                    $komentars =  App\Models\KomentarBuku::where('isbn','=',$this->book['isbn'])->where('noktp','=',$rating->noktp)->get()
+                                                @endphp
+                                                <tr>
 
-                                        @foreach ($reviews as $review)
-                                        <tr>
-                                            <td class="border">{{ $review->komentar }}</td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            <form wire:submit.prevent="review" action="#" method="POST" role="form text-left"
+                                                    <th class="fw-normal">
+                                                        @foreach ($komentars as $item)
+                                                        {{-- <i class="fa fa-star rating-color"></i> --}}
+                                                            {{ $item->komentar }}&nbsp;&nbsp;
+
+                                                        @endforeach
+                                                    </th>
+                                                </tr>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    @endforeach
+                            </div>
+
+                            {{-- <table class="table table-bordered ">
+                                <thead>
+                                    <tr>
+                                        <th class="border-0 font-weight-bolder">Komentar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th class="border-0 font-weight-bolder">Komentar</th>
+
+                                    </tr>
+                                    @foreach ($reviews as $review)
+                                    <tr>
+                                        <td class="border">{{ $review->komentar }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table> --}}
+                            <form class='my-2' wire:submit.prevent="review" action="#" method="POST" role="form text-left"
                             enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="komentar">Komentar:</label>
                                     <textarea wire:model='komentar' class="form-control disabled" id="komentar" name="komentar" rows="3"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <select wire:model='userRating' class="form-control" id="rating" name="rating" {{ ($isNoKtp != null)? 'disabled': '' }}>
-                                        @if ($isNoKtp != null)
+                                    @php
+                                        $rating = ($isNoKtp != null && $book->isbn === $isNoKtp->isbn)
+                                    @endphp
+                                    <select wire:model='userRating' class="form-control" id="rating" name="rating" {{ ($rating)? 'disabled': '' }}>
+                                        @if ($rating)
                                             <option value="{{ $isNoKtp->skor_rating }}" selected>{{ $isNoKtp->skor_rating }}</option>
                                         @else
                                             <option selected>Isi ranting</option>

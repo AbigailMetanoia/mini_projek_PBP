@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('rating_buku', function (Blueprint $table) {
             $table->id();
             $table->string("isbn", 20);
-            $table->string("noktp", 20)->unique();
+            $table->string("noktp", 20);
             $table->integer("skor_rating")->unsigned();
             $table->string("tgl_rating");
             $table->timestamps();
