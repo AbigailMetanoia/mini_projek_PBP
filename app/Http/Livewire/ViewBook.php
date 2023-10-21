@@ -95,8 +95,9 @@ class ViewBook extends Component
     }
 
     public function review(){
+        $verivedData = $this->validate();
         $ratingUser = RatingBuku::find($this->noKtpUser);
-        if($ratingUser === null){
+        if((RatingBuku::find($this->noKtpUser) === null)){
             RatingBuku::create([
                 'skor_rating' => $this->userRating,
                 'isbn' => $this->book['isbn'],
@@ -108,9 +109,11 @@ class ViewBook extends Component
                 'isbn' => $this->book['isbn'],
                 'noktp' => $this->noKtpUser,
             ]);
+            // $this->test = RatingBuku::whereNot('isbn','=',$this->book['isbn'])->whereNot('noktp','=','$this->noKtpUser')->get();
             $this->test = 1;
         }
-        elseif(RatingBuku::whereNot('isbn','=',$this->book['isbn'])->whereNot('')){ // sampe sinin pusing
+        elseif((RatingBuku::where('noktp','=',$this->noKtpUser)->where('isbn','=',$this->book['isbn'])->get()->isEmpty())){ // sampe sinin pusing
+            $this->test = 2;
             RatingBuku::create([
                 'skor_rating' => $this->userRating,
                 'isbn' => $this->book['isbn'],
@@ -122,7 +125,6 @@ class ViewBook extends Component
                 'isbn' => $this->book['isbn'],
                 'noktp' => $this->noKtpUser,
             ]);
-            $this->test = 2;
 
         }
         else{
@@ -152,6 +154,7 @@ class ViewBook extends Component
         $user = Auth::user();
         $this->noKtpUser = $user->noktp;
         $isNoKtp = RatingBuku::find($this->noKtpUser);
+        $ada = RatingBuku::where('noktp','=',$this->noKtpUser)->where('isbn','=',$this->book['isbn'])->get()->isNotEmpty();
 
 
         // if(RatingBuku::find($noKtpUser) != null){
@@ -175,6 +178,7 @@ class ViewBook extends Component
 
             'noKtp' => $this->noKtpUser,
             'isNoKtp' => $isNoKtp,
+            'ada' => $ada,
             'test' => $this->test,
         ]);
 

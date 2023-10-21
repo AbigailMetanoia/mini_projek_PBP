@@ -137,7 +137,7 @@
                                 </div>
                                 <div class="form-group">
                                     @php
-                                        $rating = ($isNoKtp != null && $book->isbn === $isNoKtp->isbn)
+                                        $rating = (($isNoKtp != null && $book->isbn === $isNoKtp->isbn) || $ada)
                                     @endphp
                                     <select wire:model='userRating' class="form-control" id="rating" name="rating" {{ ($rating)? 'disabled': '' }}>
                                         @if ($rating)
