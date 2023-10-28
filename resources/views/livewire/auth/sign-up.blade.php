@@ -53,7 +53,7 @@
                                     <input wire:model="kota" type="text" class="form-control" placeholder="Kota"
                                         aria-label="kota" aria-describedby="email-addon">
                                 </div>
-                                @error('no_telp') <div class="text-danger">{{ $message }}</div> @enderror
+                                @error('kota') <div class="text-danger">{{ $message }}</div> @enderror
                             </div>
                             <div class="mb-3">
                                 <div class="@error('no_telp') border border-danger rounded-3  @enderror">
