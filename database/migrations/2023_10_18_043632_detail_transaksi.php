@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('detail_transaksi', function (Blueprint $table) {
             $table->id();
-            $table->string("idtransaksi", 20)->unique();
-            $table->string("idbuku", 20)->unique();
-            $table->string("tgl_kembali");
-            $table->string("denda");
+            $table->string("idbuku", 20);
+            $table->string("tgl_kembali")->nullable();
+            $table->string("denda")->nullable();
             $table->string("status")->default('Belum Dikembalikan');
             $table->string("iduser");
-            $table->string("idpetugas", 100);
+            $table->string("idpetugas", 100)->nullable();
             $table->timestamps();
         });
     }

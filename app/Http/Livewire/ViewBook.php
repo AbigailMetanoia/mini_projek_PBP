@@ -20,7 +20,6 @@ class ViewBook extends Component
     protected $rules = [
         'komentar' => 'max:200',
         'userRating' => 'required',
-
     ];
 
     public function index()

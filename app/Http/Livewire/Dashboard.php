@@ -20,10 +20,8 @@ class Dashboard extends Component
         $book = ViewBooks::find($bookId);
         $this->books = $book;
         $cart = [
-            // 'isbn' => $this->books->isbn,
-            // 'judul' => $this->books->judul,
-            'isbn' => 'A2',
-            'judul' => 'Beban Hidup',
+            'isbn' => $this->books->isbn,
+            'judul' => $this->books->judul,
         ];
         Carts::create($cart);
 
@@ -47,7 +45,6 @@ class Dashboard extends Component
         return view('livewire.dashboard', [
             'view_books' => $viewBooks,
             'books' => $this->books,
-            // 'isbn' => $this->books['isbn'],
         ]);
     }
 

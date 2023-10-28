@@ -80,7 +80,7 @@ class DatabaseSeeder extends Seeder
         // Seed Transaksi
         $detail_transaksi = [
             [
-                'idtransaksi' => '1',
+                // 'idtransaksi' => '1',
                 'idbuku' => 'A1',
                 'tgl_kembali'=> '17/08/2020',
                 'denda'=> '50000',

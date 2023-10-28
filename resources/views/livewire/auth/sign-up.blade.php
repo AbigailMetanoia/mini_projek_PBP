@@ -19,6 +19,7 @@
                 <div class="card z-index-0">
                     <div class="card-header text-center pt-4">
                         <h5>{{ __('Form Regristrasi') }}</h5>
+                        <h5>data: {{ $data }}</h5>
                     </div>
                     <div class="row px-xl-5 px-sm-4 px-3">
                     </div>
@@ -81,6 +82,7 @@
                                 <label for="file_ktp" class="form-label">Upload File KTP</label>
                                 <input wire:model="file_ktp" class="form-control" type="file" id="file_ktp"
                                     name="file_ktp" placeholder="Upload Foto KTP">
+                                @error('file_ktp') <div class="text-danger">{{ $message }}</div> @enderror
                             </div>
 
 

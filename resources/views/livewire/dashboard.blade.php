@@ -10,7 +10,7 @@
                                 <div class="d-flex flex-row justify-content-between">
                                     <div>
                                         <h5 class="mb-0" style="text-align: center;">Rekomendasi Buku Untukmu !</h5>
-                                        <h5>data: {{ $books }}</h5>
+                                        {{-- <h5>data: {{ $books }}</h5> --}}
                                         {{-- <h5>data: {{ $books['isbn'] }}</h5> --}}
                                     </div>
                                     <div class="search-bar">
